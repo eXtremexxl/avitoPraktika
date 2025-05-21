@@ -1,0 +1,625 @@
+/* Базовые стили */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: 'Arial', sans-serif;
+}
+
+.alert {
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+}
+
+/* Навигация */
+.nav-favorites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    color: #718096;
+    font-size: 16px;
+    transition: color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.nav-favorites i {
+    font-size: 18px;
+    color: #3b82f6;
+}
+
+.nav-favorites:hover {
+    color: #3b82f6;
+    background: #eff6ff;
+    border-radius: 6px;
+    transform: translateY(-1px);
+}
+
+.nav-favorites:hover i {
+    color: #2563eb;
+}
+
+/* Заголовок */
+.favorites-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 32px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorites-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.favorites-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 0;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.favorites-header h1 i {
+    color: #3b82f6;
+}
+
+/* Вкладка в профиле */
+.tab-favorites {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #718096;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.tab-favorites:hover {
+    color: #3b82f6;
+    background: #eff6ff;
+    transform: translateY(-1px);
+}
+
+.tab-favorites i {
+    color: #3b82f6;
+}
+
+.tab-favorites:hover i {
+    color: #2563eb;
+}
+
+/* Сетка объявлений */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.ad-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ad-image {
+    width: 100%;
+    height: 180px;
+}
+
+.ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+
+
+.ad-image .no-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f1f3f5 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ad-info {
+    padding: 16px;
+}
+
+.ad-info h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ad-info h3 a {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.ad-info h3 a:hover {
+    color: #3b82f6;
+}
+
+.ad-info .price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #3b82f6;
+    margin: 0 0 6px;
+}
+
+.ad-info .category {
+    font-size: 13px;
+    color: #718096;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+/* Пустое состояние */
+.no-results {
+    font-size: 16px;
+    color: #718096;
+    text-align: center;
+    padding: 24px;
+    background: #eff6ff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.no-results i {
+    font-size: 24px;
+    color: #3b82f6;
+}
+
+.no-results p {
+    margin: 0;
+}
+
+/* Кнопки */
+.btn {
+    padding: 12px 24px;
+    min-width: 140px;
+    height: 48px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    filter: blur(2px);
+}
+
+.btn:hover::after {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        padding: 20px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .favorites-header {
+        padding: 25px;
+    }
+
+    .nav-favorites {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+        padding: 18px;
+    }
+
+    .favorites-header {
+        padding: 22px;
+    }
+
+    .favorites-header h1 {
+        font-size: 28px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 18px;
+    }
+
+    .ad-image {
+        height: 160px;
+    }
+
+    .nav-favorites {
+        font-size: 15px;
+    }
+
+    .nav-favorites i {
+        font-size: 16px;
+    }
+
+    .tab-favorites {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 15px;
+    }
+
+    .favorites-header {
+        padding: 20px;
+    }
+
+    .favorites-header h1 {
+        font-size: 24px;
+    }
+
+    .ads-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .ad-card {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    .ad-image {
+        height: 150px;
+    }
+
+    .ad-info {
+        padding: 14px;
+    }
+
+    .ad-info h3 {
+        font-size: 16px;
+    }
+
+    .ad-info .price {
+        font-size: 16px;
+    }
+
+    .ad-info .category {
+        font-size: 12px;
+    }
+
+    .no-results {
+        font-size: 15px;
+        padding: 20px;
+    }
+
+    .no-results i {
+        font-size: 22px;
+    }
+
+    .nav-favorites {
+        padding: 8px;
+    }
+
+    .nav-favorites i {
+        font-size: 15px;
+    }
+
+    .tab-favorites {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 14px;
+        justify-content: center;
+    }
+
+    .tab-favorites:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .favorites-header {
+        padding: 16px;
+    }
+
+    .favorites-header h1 {
+        font-size: 22px;
+    }
+
+    .ads-grid {
+        gap: 14px;
+    }
+
+    .ad-image {
+        height: 140px;
+    }
+
+    .ad-info {
+        padding: 12px;
+    }
+
+    .ad-info h3 {
+        font-size: 15px;
+    }
+
+    .ad-info .price {
+        font-size: 15px;
+    }
+
+    .ad-info .category {
+        font-size: 11px;
+    }
+
+    .ad-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .no-results {
+        font-size: 14px;
+        padding: 16px;
+    }
+
+    .no-results i {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        min-width: 120px;
+        height: 44px;
+        font-size: 14px;
+    }
+
+    .nav-favorites {
+        padding: 6px;
+    }
+
+    .nav-favorites i {
+        font-size: 14px;
+    }
+
+    .tab-favorites {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .favorites-header {
+        padding: 12px;
+    }
+
+    .favorites-header h1 {
+        font-size: 20px;
+    }
+
+    .ad-image {
+        height: 120px;
+    }
+
+    .ad-info {
+        padding: 10px;
+    }
+
+    .ad-info h3 {
+        font-size: 14px;
+    }
+
+    .ad-info .price {
+        font-size: 14px;
+    }
+
+    .ad-info .category {
+        font-size: 10px;
+    }
+
+    .no-results {
+        font-size: 13px;
+        padding: 12px;
+    }
+
+    .no-results i {
+        font-size: 18px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        min-width: 100px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .nav-favorites {
+        padding: 5px;
+    }
+
+    .nav-favorites i {
+        font-size: 13px;
+    }
+
+    .tab-favorites {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 8px;
+    }
+
+    .favorites-header {
+        padding: 10px;
+    }
+
+    .favorites-header h1 {
+        font-size: 18px;
+    }
+
+    .ad-image {
+        height: 110px;
+    }
+
+    .ad-info {
+        padding: 8px;
+    }
+
+    .ad-info h3 {
+        font-size: 13px;
+    }
+
+    .ad-info .price {
+        font-size: 13px;
+    }
+
+    .ad-info .category {
+        font-size: 9px;
+    }
+
+    .no-results {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .no-results i {
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 6px 14px;
+        min-width: 90px;
+        height: 36px;
+        font-size: 12px;
+    }
+
+    .nav-favorites {
+        padding: 4px;
+    }
+
+    .nav-favorites i {
+        font-size: 12px;
+    }
+
+    .tab-favorites {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}

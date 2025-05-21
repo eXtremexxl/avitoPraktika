@@ -1,0 +1,1355 @@
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+/* Сообщения */
+.alert-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+/* Информация о профиле */
+.profile-info {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #4a5568;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.profile-info strong {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.tab-button {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #718096;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: color 0.3s ease, background 0.3s ease, transform 0.2s ease;
+    position: relative;
+}
+
+.tab-button:hover {
+    color: #007bff;
+    background: #f7fafc;
+    transform: translateY(-1px);
+}
+
+.tab-button.active {
+    color: #007bff;
+    background: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 -2px 0 #007bff inset;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #007bff;
+    animation: slide-in 0.3s ease;
+}
+
+@keyframes slide-in {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.tab-content {
+    display: none;
+    animation: fade-in 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 16px;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Сетка объявлений и чатов */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.ad-card, .chat-card {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-card:hover, .chat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.ad-image, .chat-image {
+    width: 100%;
+    height: 180px;
+}
+
+.ad-image img, .chat-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+
+.ad-image .no-image, .chat-image .no-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #f1f3f5 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ad-info, .chat-info {
+    padding: 16px;
+}
+
+.ad-info h3, .chat-info h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ad-info h3 a, .chat-info h3 a {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.ad-info h3 a:hover, .chat-info h3 a:hover {
+    color: #007bff;
+}
+
+.price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0 0 6px;
+}
+
+.category {
+    font-size: 13px;
+    color: #718096;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.chat-partner, .chat-last-message {
+    font-size: 14px;
+    color: #4a5568;
+    margin: 0 0 6px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-partner strong, .chat-last-message strong {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.no-results {
+    font-size: 16px;
+    color: #718096;
+    text-align: center;
+    padding: 24px;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+/* Действия карточки */
+.ad-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+/* Форма профиля */
+.profile-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.profile-form:hover {
+    transform: translateY(-2px);
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #2d3748;
+    background: #f7fafc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    outline: none;
+    background: #ffffff;
+}
+
+.error {
+    color: #e53e3e;
+    font-size: 13px;
+    margin-top: 6px;
+    display: block;
+    font-weight: 500;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+/* Кнопки */
+.btn {
+    padding: 12px 24px;
+    min-width: 140px;       /* одинаковая минимальная ширина */
+    height: 48px;           /* одинаковая высота */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Синяя кнопка */
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #0088cc 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+}
+
+/* Серая кнопка */
+.btn-secondary {
+    background: linear-gradient(135deg, #718096 0%, #a0aec0 100%);
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268 0%, #8795a1 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(113,128,150,0.3);
+}
+
+/* Красная кнопка */
+.btn-danger {
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(229,62,62,0.3);
+}
+
+/* Всплеск */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    filter: blur(2px);
+}
+
+.btn:hover::after {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+}
+
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .ad-image, .chat-image {
+        height: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .profile-info {
+        padding: 16px;
+    }
+
+    .profile-form {
+        padding: 24px;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tab-button {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+
+    .ad-image, .chat-image {
+        height: 120px;
+    }
+
+    .ad-info h3, .chat-info h3 {
+        font-size: 15px;
+    }
+
+    .price {
+        font-size: 15px;
+    }
+
+    .category {
+        font-size: 12px;
+    }
+
+    .chat-partner, .chat-last-message {
+        font-size: 13px;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Аватарка */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.default-avatar {
+    font-size: 60px;
+    color: #e53e3e;
+}
+
+/* Заголовок профиля */
+.profile-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 15px;
+}
+
+.profile-header p {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.profile-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.rating-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e53e3e;
+}
+
+.stars .fa-star {
+    font-size: 20px;
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.stars .fa-star.filled {
+    color: #f6c23e;
+}
+
+.reviews-count {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+
+
+
+/* Карточки */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.ad-card, .chat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.ad-card:hover, .chat-card:hover {
+    transform: translateY(-4px);
+}
+
+.ad-image img, .chat-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.ad-image .no-image, .chat-image .no-image {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+    font-size: 16px;
+    color: #666;
+}
+
+.ad-info, .chat-info {
+    padding: 15px;
+}
+
+.ad-info h3, .chat-info h3 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+
+.ad-info .price, .chat-info .chat-partner, .chat-info .chat-last-message {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.ad-info .category {
+    font-size: 14px;
+    color: #666;
+}
+
+.ad-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Отзывы */
+.reviews-list {
+    display: grid;
+    gap: 20px;
+}
+
+.review-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.review-item:hover {
+    transform: translateY(-4px);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reviewer-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.review-comment {
+    font-size: 16px;
+    color: #444;
+    margin: 10px 0;
+}
+
+.review-time {
+    font-size: 14px;
+    color: #888;
+}
+
+.review-notice {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.no-results {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Форма редактирования профиля */
+.profile-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #e53e3e;
+    box-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group .error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.avatar-preview {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f4f8;
+}
+
+.avatar-preview .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-preview .default-avatar {
+    font-size: 50px;
+    color: #e53e3e;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        padding: 20px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    .profile-header {
+        padding: 25px;
+    }
+
+    .profile-form {
+        max-width: 600px;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+        padding: 18px;
+    }
+
+    .profile-header {
+        padding: 22px;
+    }
+
+    .profile-header h1 {
+        font-size: 28px;
+    }
+
+    .profile-avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 18px;
+    }
+
+    .ad-image img, .chat-image img,
+    .ad-image .no-image, .chat-image .no-image {
+        height: 160px;
+    }
+
+    .tab-button {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .profile-form {
+        max-width: 500px;
+        padding: 22px;
+    }
+
+    .review-item {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 15px;
+    }
+
+    .profile-header {
+        padding: 20px;
+    }
+
+    .profile-header h1 {
+        font-size: 24px;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-rating .rating-value {
+        font-size: 22px;
+    }
+
+    .stars .fa-star {
+        font-size: 18px;
+    }
+
+    .reviews-count {
+        font-size: 15px;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .tab-button {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 14px;
+        justify-content: center;
+        border-radius: 6px; /* Скругление для мобильных */
+    }
+
+    .tab-button:hover {
+        transform: none; /* Отключаем hover-эффекты */
+    }
+
+    .ads-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .ad-card, .chat-card {
+        margin: 0 auto;
+        max-width: 400px; /* Ограничиваем ширину для центрирования */
+    }
+
+    .ad-image img, .chat-image img,
+    .ad-image .no-image, .chat-image .no-image {
+        height: 150px;
+    }
+
+    .ad-info, .chat-info {
+        padding: 14px;
+    }
+
+    .ad-info h3, .chat-info h3 {
+        font-size: 16px;
+    }
+
+    .ad-info .price {
+        font-size: 16px;
+    }
+
+    .ad-info .category {
+        font-size: 12px;
+    }
+
+    .chat-info .chat-partner, .chat-info .chat-last-message {
+        font-size: 13px;
+    }
+
+    .profile-form {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    .avatar-preview {
+        width: 90px;
+        height: 90px;
+    }
+
+    .avatar-preview .default-avatar {
+        font-size: 45px;
+    }
+
+    .review-item {
+        padding: 16px;
+    }
+
+    .reviewer-name {
+        font-size: 16px;
+    }
+
+    .review-comment {
+        font-size: 14px;
+    }
+
+    .review-time {
+        font-size: 13px;
+    }
+
+    .btn-primary, .btn-danger {
+        height: 44px; /* Touch-friendly */
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .profile-header {
+        padding: 16px;
+    }
+
+    .profile-header h1 {
+        font-size: 22px;
+    }
+
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-rating .rating-value {
+        font-size: 20px;
+    }
+
+    .stars .fa-star {
+        font-size: 16px;
+    }
+
+    .reviews-count {
+        font-size: 14px;
+    }
+
+    .tab-content h2 {
+        font-size: 20px;
+    }
+
+    .tab-button {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .ads-grid {
+        gap: 14px;
+    }
+
+    .ad-image img, .chat-image img,
+    .ad-image .no-image, .chat-image .no-image {
+        height: 140px;
+    }
+
+    .ad-info, .chat-info {
+        padding: 12px;
+    }
+
+    .ad-info h3, .chat-info h3 {
+        font-size: 15px;
+    }
+
+    .ad-info .price {
+        font-size: 15px;
+    }
+
+    .ad-info .category {
+        font-size: 11px;
+    }
+
+    .chat-info .chat-partner, .chat-info .chat-last-message {
+        font-size: 12px;
+    }
+
+    .ad-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .profile-form {
+        padding: 16px;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .avatar-preview {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-preview .default-avatar {
+        font-size: 40px;
+    }
+
+    .btn-primary, .btn-danger {
+        padding: 8px 16px;
+        min-width: 100px;
+        height: 40px;
+        font-size: 13px;
+    }
+
+    .review-item {
+        padding: 14px;
+    }
+
+    .reviewer-name {
+        font-size: 15px;
+    }
+
+    .review-comment {
+        font-size: 13px;
+    }
+
+    .review-time {
+        font-size: 12px;
+    }
+
+    .review-notice {
+        font-size: 14px;
+    }
+
+    .no-results {
+        font-size: 14px;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .profile-header {
+        padding: 12px;
+    }
+
+    .profile-header h1 {
+        font-size: 20px;
+    }
+
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+    }
+
+    .profile-rating .rating-value {
+        font-size: 18px;
+    }
+
+    .stars .fa-star {
+        font-size: 14px;
+    }
+
+    .reviews-count {
+        font-size: 13px;
+    }
+
+    .tab-content h2 {
+        font-size: 18px;
+    }
+
+    .tab-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .ads-grid {
+        gap: 12px;
+    }
+
+    .ad-image img, .chat-image img,
+    .ad-image .no-image, .chat-image .no-image {
+        height: 120px;
+    }
+
+    .ad-info, .chat-info {
+        padding: 10px;
+    }
+
+    .ad-info h3, .chat-info h3 {
+        font-size: 14px;
+    }
+
+    .ad-info .price {
+        font-size: 14px;
+    }
+
+    .ad-info .category {
+        font-size: 10px;
+    }
+
+    .chat-info .chat-partner, .chat-info .chat-last-message {
+        font-size: 11px;
+    }
+
+    .profile-form {
+        padding: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .avatar-preview {
+        width: 70px;
+        height: 70px;
+    }
+
+    .avatar-preview .default-avatar {
+        font-size: 35px;
+    }
+
+    .btn-primary, .btn-danger {
+        padding: 6px 14px;
+        min-width: 90px;
+        height: 38px;
+        font-size: 12px;
+    }
+
+    .review-item {
+        padding: 12px;
+    }
+
+    .reviewer-name {
+        font-size: 14px;
+    }
+
+    .review-comment {
+        font-size: 12px;
+    }
+
+    .review-time {
+        font-size: 11px;
+    }
+
+    .review-notice {
+        font-size: 13px;
+    }
+
+    .no-results {
+        font-size: 13px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 8px;
+    }
+
+    .profile-header {
+        padding: 10px;
+    }
+
+    .profile-header h1 {
+        font-size: 18px;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+    }
+
+    .profile-rating .rating-value {
+        font-size: 16px;
+    }
+
+    .stars .fa-star {
+        font-size: 12px;
+    }
+
+    .reviews-count {
+        font-size: 12px;
+    }
+
+    .tab-content h2 {
+        font-size: 16px;
+    }
+
+    .tab-button {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    .ad-image img, .chat-image img,
+    .ad-image .no-image, .chat-image .no-image {
+        height: 110px;
+    }
+
+    .ad-info, .chat-info {
+        padding: 8px;
+    }
+
+    .ad-info h3, .chat-info h3 {
+        font-size: 13px;
+    }
+
+    .ad-info .price {
+        font-size: 13px;
+    }
+
+    .ad-info .category {
+        font-size: 9px;
+    }
+
+    .chat-info .chat-partner, .chat-info .chat-last-message {
+        font-size: 10px;
+    }
+
+    .profile-form {
+        padding: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        font-size: 11px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+
+    .avatar-preview {
+        width: 60px;
+        height: 60px;
+    }
+
+    .avatar-preview .default-avatar {
+        font-size: 30px;
+    }
+
+    .btn-primary, .btn-danger {
+        padding: 5px 12px;
+        min-width: 80px;
+        height: 36px;
+        font-size: 11px;
+        
+    }
+
+    .review-item {
+        padding: 10px;
+    }
+
+    .reviewer-name {
+        font-size: 13px;
+    }
+
+    .review-comment {
+        font-size: 11px;
+    }
+
+    .review-time {
+        font-size: 10px;
+    }
+}

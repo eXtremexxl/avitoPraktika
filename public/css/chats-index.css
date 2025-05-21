@@ -1,0 +1,361 @@
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Сообщения */
+.alert-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-error {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Заголовок */
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+/* Фильтры */
+.chat-filters {
+    margin-bottom: 24px;
+}
+
+.chat-filters form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #2d3748;
+    background: #f7fafc;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+    outline: none;
+    background: #ffffff;
+}
+
+/* Список чатов */
+.chats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    padding: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.chat-item.unread {
+    background: linear-gradient(135deg, #e6f3ff 0%, #f0f9ff 100%);
+    border-color: #007bff;
+}
+
+.chat-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    position: relative;
+    color: #718096;
+}
+
+.chat-icon i {
+    font-size: 20px;
+}
+
+.unread-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e53e3e;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    line-height: 1;
+}
+
+.chat-image {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+.chat-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.chat-image .no-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f1f3f5 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.chat-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-details h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-details h3 a {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.chat-details h3 a:hover {
+    color: #007bff;
+}
+
+.chat-partner {
+    font-size: 14px;
+    color: #4a5568;
+    margin: 0 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-partner strong {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.chat-last-message {
+    font-size: 14px;
+    color: #718096;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-meta {
+    flex-shrink: 0;
+    text-align: right;
+    margin-left: 16px;
+}
+
+.chat-time {
+    font-size: 13px;
+    color: #718096;
+    font-weight: 500;
+}
+
+.no-results {
+    font-size: 16px;
+    color: #718096;
+    text-align: center;
+    padding: 24px;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+/* Кнопки */
+.btn {
+    padding: 12px 24px;
+    min-width: 120px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #0088cc 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    filter: blur(2px);
+}
+
+.btn:hover::after {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .chat-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .chat-details h3 {
+        font-size: 15px;
+    }
+
+    .chat-partner, .chat-last-message {
+        font-size: 13px;
+    }
+
+    .chat-time {
+        font-size: 12px;
+    }
+
+    .filter-group {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .chat-item {
+        padding: 10px;
+    }
+
+    .chat-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    .chat-icon i {
+        font-size: 16px;
+    }
+
+    .unread-count {
+        font-size: 10px;
+        padding: 1px 4px;
+    }
+
+    .chat-image {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+    }
+
+    .chat-details h3 {
+        font-size: 14px;
+    }
+
+    .chat-partner, .chat-last-message {
+        font-size: 12px;
+    }
+
+    .chat-time {
+        font-size: 11px;
+    }
+
+    .chat-meta {
+        margin-left: 12px;
+    }
+
+    .chat-filters form {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        min-width: 100%;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        min-width: 100px;
+        font-size: 14px;
+    }
+}
