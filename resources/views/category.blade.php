@@ -1,8 +1,12 @@
 @extends('layouts.app')
+
 @section('title', $category->name)
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/ads.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
+
 @section('content')
     <div class="container">
         @if (session('success'))
@@ -19,7 +23,8 @@
                         <li>
                             <a href="{{ route('category.show', $cat->id) }}"
                                class="{{ $cat->id == $category->id ? 'active' : '' }}">
-                                {{ $cat->name }}
+                                <i class="fas fa-tag"></i>
+                                <span>{{ $cat->name }}</span>
                             </a>
                         </li>
                     @endforeach
@@ -29,8 +34,8 @@
             <main class="main-content">
                 <h1>{{ $category->name }}</h1>
                 <div class="ads-grid">
-                    @forelse ($ads as $ad)
-                        <a href="{{ route('ad.show', $ad->id) }}" class="ad-card">
+                    @forelse ($ads as $index => $ad)
+                        <a href="{{ route('ad.show', $ad->id) }}" class="ad-card" style="--card-index: {{ $index }}">
                             <div class="ad-image">
                                 @php
                                     $mainPhoto = $ad->photos->where('is_main', true)->first() ?? $ad->photos->first();

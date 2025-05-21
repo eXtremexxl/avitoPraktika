@@ -66,7 +66,7 @@
                         </div>
                         <div class="chat-meta">
                             <span class="chat-time">
-                                {{ $chat->messages->last()->created_at->format('d.m.Y H:i') ?? '-' }}
+                                {{ optional($chat->messages->last())->created_at?->format('d.m.Y H:i') ?? '-' }}
                             </span>
                         </div>
                     </div>

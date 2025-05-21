@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -32,7 +33,41 @@ class ProfileController extends Controller
 
         $chats = $user->chats()->with(['ad', 'seller', 'buyer', 'messages'])->get();
 
-        return view('profile.index', compact('user', 'ads', 'chats'));
+        // Статистика
+        $viewsData = DB::table('views')
+            ->whereIn('ad_id', $user->ads()->pluck('id'))
+            ->where('viewed_at', '>=', now()->subDays(7))
+            ->select(DB::raw('DATE(viewed_at) as date'), DB::raw('COUNT(*) as views'))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get()
+            ->mapWithKeys(function ($item) {
+                return [date('D', strtotime($item->date)) => $item->views];
+            });
+
+        $days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        $views = collect($days)->mapWithKeys(function ($day) use ($viewsData) {
+            return [$day => $viewsData->get($day, 0)];
+        })->toArray();
+
+        $categoryData = Ad::where('user_id', $user->id)
+            ->join('categories', 'ads.category_id', '=', 'categories.id')
+            ->select('categories.name', DB::raw('COUNT(*) as count'))
+            ->groupBy('categories.name')
+            ->get()
+            ->pluck('count', 'name')
+            ->toArray();
+
+        $stats = [
+            'views' => $views,
+            'categories' => $categoryData,
+            'favorites_count' => $user->favorites()->count(),
+            'messages_count' => $chats->sum(function ($chat) {
+                return $chat->messages->count();
+            }),
+        ];
+
+        return view('profile.index', compact('user', 'ads', 'chats', 'stats'));
     }
 
     public function show($id)
@@ -69,9 +104,7 @@ class ProfileController extends Controller
             $data['password'] = Hash::make($request->password);
         }
 
-        // Обработка аватарки
         if ($request->hasFile('avatar')) {
-            // Удаляем старую аватарку, если она есть
             if ($user->avatar) {
                 Storage::disk('public')->delete($user->avatar);
             }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Photo;
+use App\Models\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -27,12 +28,32 @@ class AdController extends Controller
 
     public function show($id)
     {
-        $ad = Ad::with(['photos', 'category', 'user'])->findOrFail($id);
+        $ad = Ad::with(['photos', 'category', 'user.reviewsReceived.reviewer'])->findOrFail($id);
         if (!$ad->is_active || !$ad->approved) {
             abort(404);
         }
+
+        // Логируем просмотр только если пользователь не просматривал это объявление
+        if (Auth::check() && !$ad->views()->where('user_id', Auth::id())->exists()) {
+            View::create([
+                'ad_id' => $ad->id,
+                'user_id' => Auth::id(),
+                'viewed_at' => now(),
+            ]);
+        }
+
+        // Связанные объявления
+        $relatedAds = Ad::with(['photos', 'category'])
+            ->where('category_id', $ad->category_id)
+            ->where('id', '!=', $ad->id)
+            ->where('is_active', true)
+            ->where('approved', true)
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+
         $categories = Category::all();
-        return view('ads.show', compact('ad', 'categories'));
+        return view('ads.show', compact('ad', 'categories', 'relatedAds'));
     }
 
     public function showCategory($id)

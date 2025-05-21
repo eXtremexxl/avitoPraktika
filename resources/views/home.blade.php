@@ -1,8 +1,12 @@
 @extends('layouts.app')
+
 @section('title', 'Главная')
+
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endpush
+
 @section('content')
     <div class="container">
         @if (session('success'))
@@ -17,9 +21,9 @@
                 <ul>
                     @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('category.show', $category->id) }}"
-                               class="{{ request()->route('id') == $category->id ? 'active' : '' }}">
-                                {{ $category->name }}
+                            <a href="{{ route('category.show', $category->id) }}">
+                                <i class="fas fa-tag"></i>
+                                <span>{{ $category->name }}</span>
                             </a>
                         </li>
                     @endforeach
@@ -31,16 +35,14 @@
                     <div class="search-wrapper">
                         <input type="text" name="search" placeholder="Поиск по объявлениям..." value="{{ request('search') }}">
                         <button type="submit" aria-label="Найти">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19 19L13.5 13.5M15 8.5C15 12.0899 12.0899 15 8.5 15C4.91015 15 2 12.0899 2 8.5C2 4.91015 4.91015 2 8.5 2C12.0899 2 15 4.91015 15 8.5Z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
+                            <i class="fas fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </form>
 
                 <div class="ads-grid">
-                    @forelse ($ads as $ad)
-                        <a href="{{ route('ad.show', $ad->id) }}" class="ad-card">
+                    @forelse ($ads as $index => $ad)
+                        <a href="{{ route('ad.show', $ad->id) }}" class="ad-card" style="--card-index: {{ $index }}">
                             <div class="ad-image">
                                 @php
                                     $mainPhoto = $ad->photos->where('is_main', true)->first() ?? $ad->photos->first();

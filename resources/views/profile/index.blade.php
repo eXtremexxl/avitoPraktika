@@ -2,7 +2,11 @@
 @section('title', 'Личный кабинет')
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/favorites.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+@endpush
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.min.js"></script>
 @endpush
 @section('content')
     <div class="container">
@@ -22,7 +26,7 @@
                 @if (auth()->user()->avatar)
                     <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}" class="avatar-img">
                 @else
-                    <i class="fas fa-user-circle default-avatar"></i>
+                    <i class="far fa-user-circle default-avatar"></i>
                 @endif
             </div>
             <h1>{{ auth()->user()->name }}</h1>
@@ -44,7 +48,7 @@
         <div id="active" class="tab-content active">
             <h2><i class="fas fa-bullhorn"></i> Активные объявления</h2>
             @if (empty($ads['active']) || collect($ads['active'])->isEmpty())
-                <p class="no-results">Нет активных объявлений.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Нет активных объявлений.</p>
             @else
                 <div class="ads-grid">
                     @foreach ($ads['active'] as $ad)
@@ -86,7 +90,7 @@
         <div id="inactive" class="tab-content">
             <h2><i class="fas fa-archive"></i> Неактивные объявления</h2>
             @if (empty($ads['inactive']) || collect($ads['inactive'])->isEmpty())
-                <p class="no-results">Нет неактивных объявлений.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Нет неактивных объявлений.</p>
             @else
                 <div class="ads-grid">
                     @foreach ($ads['inactive'] as $ad)
@@ -128,7 +132,7 @@
         <div id="pending" class="tab-content">
             <h2><i class="fas fa-clock"></i> Объявления на модерации</h2>
             @if (empty($ads['pending']) || collect($ads['pending'])->isEmpty())
-                <p class="no-results">Нет объявлений на модерации.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Нет объявлений на модерации.</p>
             @else
                 <div class="ads-grid">
                     @foreach ($ads['pending'] as $ad)
@@ -170,7 +174,7 @@
         <div id="chats" class="tab-content">
             <h2><i class="fas fa-comments"></i> Мои чаты</h2>
             @if ($chats->isEmpty())
-                <p class="no-results">Нет активных чатов.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Нет активных чатов.</p>
             @else
                 <div class="ads-grid">
                     @foreach ($chats as $chat)
@@ -223,26 +227,29 @@
                     @endforeach
                 </div>
             @else
-                <p class="no-results">Нет отзывов.</p>
+                <p class="no-results"><i class="fas fa-exclamation-circle"></i> Нет отзывов.</p>
             @endif
         </div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button:not(.tab-favorites)');
+            const contents = document.querySelectorAll('.tab-content');
 
-        <script>
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabName = button.dataset.tab;
-                    document.querySelectorAll('.tab-content').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    document.querySelectorAll('.tab-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    document.getElementById(tabName).classList.add('active');
-                    button.classList.add('active');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.tab).classList.add('active');
                 });
             });
-        </script>
 
+
+        });
+
+
+    </script>
 @endsection

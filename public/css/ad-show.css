@@ -2,62 +2,58 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
+    font-family: 'Arial', sans-serif;
 }
 
-
-.btn i {
-    margin-right: 8px;
+/* Сообщения */
+.alert {
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative; /* Убрать из центра */
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Сообщение об успехе */
 .alert-success {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
     color: #155724;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-/* Сообщение об ошибке */
 .alert-error {
     background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
     color: #721c24;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    font-size: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 /* Контейнер объявления */
 .ad-details {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 32px;
 }
 
 /* Заголовок */
 .ad-details h1 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 24px;
 }
 
 /* Содержимое */
 .ad-content {
     display: flex;
-    gap: 30px;
+    gap: 32px;
 }
 
 /* Фотографии */
@@ -69,7 +65,8 @@
 .main-photo {
     position: relative;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
+    cursor: pointer;
 }
 
 .main-photo img {
@@ -84,24 +81,57 @@
     opacity: 0.95;
 }
 
+.main-photo img.loading + .photo-loading {
+    display: block;
+}
+
+.photo-loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.photo-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #007bff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 .no-photos {
     width: 100%;
     height: 200px;
-    background-color: #f1f3f5;
+    background: linear-gradient(135deg, #f1f3f5 0%, #e2e8f0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6c757d;
+    color: #718096;
     font-size: 16px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 .thumbnails {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    gap: 12px;
+    margin-top: 16px;
     overflow-x: auto;
-    padding-bottom: 5px;
+    padding-bottom: 8px;
 }
 
 .thumbnails::-webkit-scrollbar {
@@ -109,7 +139,7 @@
 }
 
 .thumbnails::-webkit-scrollbar-thumb {
-    background-color: #ddd;
+    background-color: #e2e8f0;
     border-radius: 4px;
 }
 
@@ -117,10 +147,10 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    border-radius: 6px;
+    border: 1px solid #edf2f7;
     cursor: pointer;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .thumbnails img.active {
@@ -137,54 +167,332 @@
     flex: 1;
 }
 
-.ad-info .price {
-    font-size: 24px;
-    font-weight: 600;
-    color: #007bff;
-    margin-bottom: 15px;
-}
-
-.ad-info p {
+.ad-info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
+    color: #2d3748;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #edf2f7;
 }
 
-.ad-info strong {
+.ad-info-item i {
+    color: #007bff;
+    font-size: 18px;
+}
+
+.ad-info-item .price {
+    font-size: 24px;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.ad-info-item strong {
     font-weight: 500;
-    color: #333;
+    color: #2d3748;
+}
+
+.ad-info-item.stats {
+    font-size: 14px;
+    color: #718096;
+}
+
+.ad-info-item.stats i {
+    font-size: 16px;
 }
 
 /* Действия */
 .ad-actions {
     display: flex;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 12px;
+    margin-top: 24px;
     flex-wrap: wrap;
 }
 
-/* Общий стиль кнопок */
+/* Отзывы */
+.seller-reviews {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 32px;
+}
+
+.seller-reviews h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.review-item {
+    background: #ffffff;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.reviewer-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.stars i {
+    font-size: 14px;
+    color: #d4d4d4;
+}
+
+.stars i.filled {
+    color: #007bff;
+}
+
+.review-comment {
+    font-size: 14px;
+    color: #2d3748;
+    margin: 0 0 8px;
+}
+
+.review-time {
+    font-size: 12px;
+    color: #718096;
+    margin: 0;
+}
+
+/* Связанные объявления */
+.related-ads {
+    padding: 24px 0;
+}
+
+.related-ads h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.ad-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    border: 1px solid #edf2f7;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ad-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.ad-image {
+    width: 100%;
+    height: 160px;
+}
+
+.ad-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.ad-image img:hover {
+    transform: scale(1.05);
+}
+
+.ad-image .no-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f1f3f5 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #718096;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ad-info {
+    padding: 16px;
+}
+
+.ad-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ad-info h3 a {
+    color: #2d3748;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.ad-info h3 a:hover {
+    color: #007bff;
+}
+
+.ad-info .price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #007bff;
+    margin: 0 0 6px;
+}
+
+.ad-info .category {
+    font-size: 12px;
+    color: #718096;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+/* Лайтбокс */
+.lightbox {
+    background: rgba(0, 0, 0, 0.9);
+    border: none;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 0;
+    border-radius: 8px;
+    display: none; /* Скрыт по умолчанию */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox[open] {
+    display: flex; /* Показ при открытии */
+    opacity: 1;
+}
+
+.lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.lightbox-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.lightbox-content img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close-lightbox:hover {
+    background: #e2e8f0;
+}
+
+.close-lightbox i {
+    font-size: 20px;
+    color: #2d3748;
+}
+
+/* Кнопки */
 .btn {
     padding: 12px 24px;
-    min-width: 140px; /* Увеличено, чтобы все кнопки выглядели более ровно */
-    height: 48px; /* Фиксированная высота */
+    min-width: 160px;
+    height: 48px;
     border: none;
     border-radius: 6px;
     font-size: 16px;
     font-weight: 500;
+    line-height: 1.5;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    gap: 8px;
+}
+/* Отменяем изменение размера на адаптиве */
+@media (max-width: 1200px),
+       (max-width: 900px),
+       (max-width: 768px),
+       (max-width: 576px),
+       (max-width: 360px) {
+    .btn {
+        min-width: 140px !important;
+        height: 44px !important;
+        padding: 10px 20px !important;
+        font-size: 15px !important;
+    }
+    .btn-primary{
+        width: 100% !important;
+    }
+    .btn-primary1{
+        margin-left: 10px !important;
+    }
 }
 
-/* Кнопка — синяя */
 .btn-primary {
+    background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
+    color: #ffffff;
+}
+.btn-primary1 {
+    margin-top: 10px !important;
     background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
     color: #ffffff;
 }
@@ -192,10 +500,9 @@
 .btn-primary:hover {
     background: linear-gradient(135deg, #0056b3 0%, #0088cc 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0,123,255,0.3);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
 }
 
-/* Кнопка — красная */
 .btn-danger {
     background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
     color: #ffffff;
@@ -204,85 +511,12 @@
 .btn-danger:hover {
     background: linear-gradient(135deg, #c53030 0%, #e53e3e 100%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(229,62,62,0.3);
-}
-
-/* Эффект всплеска */
-.btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255,255,255,0.15);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    filter: blur(2px);
-}
-
-.btn:hover::after {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-}
-
-
-/* Адаптивность */
-@media (max-width: 900px) {
-    .ad-content {
-        flex-direction: column;
-    }
-
-    .ad-photos {
-        max-width: 100%;
-    }
-
-    .main-photo img {
-        max-height: 350px;
-    }
-}
-
-@media (max-width: 600px) {
-    .container {
-        padding: 16px;
-    }
-
-    .ad-details {
-        padding: 20px;
-    }
-
-    .ad-details h1 {
-        font-size: 24px;
-    }
-
-    .ad-info .price {
-        font-size: 20px;
-    }
-
-    .ad-info p {
-        font-size: 14px;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        min-width: 100px;
-        font-size: 14px;
-    }
-
-    .thumbnails img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .ad-actions {
-        flex-direction: column;
-        gap: 8px;
-    }
+    box-shadow: 0 4px 10px rgba(229, 62, 62, 0.3);
 }
 
 .btn-outline-secondary {
-    border-color: #e53e3e;
+    background: transparent;
+    border: 2px solid #e53e3e;
     color: #e53e3e;
     transition: all 0.3s ease;
 }
@@ -298,8 +532,263 @@
     border-color: #e53e3e;
 }
 
-.ad-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.btn-outline-secondary.share-btn {
+    border-color: #718096;
+    color: #718096;
+}
+
+.btn-outline-secondary.share-btn:hover {
+    background: #718096;
+    color: #ffffff;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    filter: blur(2px);
+}
+
+.btn:hover::after {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+        padding: 20px;
+    }
+
+    .ads-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+
+    .btn {
+        min-width: 140px;
+        height: 44px;
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .close-lightbox {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 900px) {
+    .ad-content {
+        flex-direction: column;
+    }
+
+    .ad-photos {
+        max-width: 100%;
+    }
+
+    .main-photo img {
+        max-height: 400px;
+    }
+
+    .ad-details h1 {
+        font-size: 28px;
+    }
+
+    .ad-info-item .price {
+        font-size: 22px;
+    }
+
+    .btn {
+        min-width: 130px;
+        height: 40px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .close-lightbox {
+        width: 40px;
+        height: 40px;
+    }
+
+    .close-lightbox i {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+        padding: 16px;
+    }
+
+    .ad-details {
+        padding: 24px;
+    }
+
+    .ad-details h1 {
+        font-size: 24px;
+    }
+
+    .ad-info-item .price {
+        font-size: 20px;
+    }
+
+    .ad-info-item {
+        font-size: 15px;
+    }
+
+    .btn {
+        min-width: 120px;
+        height: 36px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .close-lightbox {
+        width: 36px;
+        height: 36px;
+    }
+
+    .close-lightbox i {
+        font-size: 16px;
+    }
+
+    .ad-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .seller-reviews h2, .related-ads h2 {
+        font-size: 20px;
+    }
+
+    .ads-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ad-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        max-width: 100%;
+        padding: 12px;
+    }
+
+    .ad-details {
+        padding: 16px;
+    }
+
+    .main-photo img {
+        max-height: 300px;
+    }
+
+    .thumbnails img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .ad-info-item {
+        font-size: 14px;
+    }
+
+    .ad-info-item .price {
+        font-size: 18px;
+    }
+
+    .ad-info-item.stats {
+        font-size: 13px;
+    }
+
+    .btn {
+        min-width: 100px;
+        height: 32px;
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .close-lightbox {
+        width: 32px;
+        height: 32px;
+    }
+
+    .close-lightbox i {
+        font-size: 14px;
+    }
+
+    .seller-reviews, .related-ads {
+        padding: 16px 0;
+    }
+
+    .review-item {
+        padding: 12px;
+    }
+
+    .reviewer-name {
+        font-size: 14px;
+    }
+
+    .review-comment {
+        font-size: 13px;
+    }
+
+    .review-time {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .ad-details h1 {
+        font-size: 20px;
+    }
+
+    .ad-info-item {
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .ad-info-item i {
+        font-size: 16px;
+    }
+
+    .ad-info-item .price {
+        font-size: 16px;
+    }
+
+    .btn {
+        min-width: 90px;
+        height: 28px;
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .close-lightbox {
+        width: 28px;
+        height: 28px;
+    }
+
+    .close-lightbox i {
+        font-size: 12px;
+    }
+
+    .main-photo img {
+        max-height: 250px;
+    }
+
+    .thumbnails img {
+        width: 40px;
+        height: 40px;
+    }
 }
