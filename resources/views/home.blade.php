@@ -19,9 +19,17 @@
             <aside class="sidebar">
                 <h2>Категории</h2>
                 <ul>
+                    <li>
+                        <a href="{{ route('home') }}"
+                           class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                            <i class="fas fa-th-large"></i>
+                            <span>Все</span>
+                        </a>
+                    </li>
                     @foreach ($categories as $category)
                         <li>
-                            <a href="{{ route('category.show', $category->id) }}">
+                            <a href="{{ route('category.show', $category->id) }}"
+                               class="{{ request()->routeIs('category.show') && request()->route('category') == $category->id ? 'active' : '' }}">
                                 <i class="fas fa-tag"></i>
                                 <span>{{ $category->name }}</span>
                             </a>
@@ -31,6 +39,10 @@
             </aside>
 
             <main class="main-content">
+                <button class="toggle-categories" aria-label="Показать/скрыть категории">
+                    <i class="fas fa-bars"></i> Категории
+                </button>
+
                 <form method="GET" action="{{ route('home') }}" class="search-form">
                     <div class="search-wrapper">
                         <input type="text" name="search" placeholder="Поиск по объявлениям..." value="{{ request('search') }}">
@@ -66,4 +78,21 @@
             </main>
         </div>
     </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.querySelector('.toggle-categories');
+        const sidebar = document.querySelector('.sidebar');
+
+        if (toggleBtn && sidebar) {
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('active');
+                this.classList.toggle('active');
+                document.body.classList.toggle('menu-open'); // <-- ВАЖНО
+            });
+        }
+    });
+</script>
+
+
 @endsection

@@ -13,6 +13,7 @@ class CreateChatsTable extends Migration
             $table->foreignId('ad_id')->constrained()->onDelete('cascade');
             $table->foreignId('seller_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('buyer_id')->constrained('users')->onDelete('cascade');
+            $table->json('deleted_by_user')->nullable();
             $table->timestamps();
         });
     }

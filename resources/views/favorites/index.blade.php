@@ -40,12 +40,9 @@
                             <p class="price">{{ number_format($ad->price, 0, '', ' ') }} ₽</p>
                             <p class="category">{{ $ad->category->name }}</p>
                             <div class="ad-actions">
-                                <a href="{{ route('ad.show', $ad->id) }}" class="btn btn-primary">
+                                <a href="{{ route('ad.show', $ad->id) }}" class="btn btn-primary full-width">
                                     <i class="fas fa-eye"></i> Просмотреть
                                 </a>
-                                <button class="btn btn-danger toggle-favorite" data-ad-id="{{ $ad->id }}">
-                                    <i class="fas fa-trash"></i> Удалить
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -59,34 +56,30 @@
             document.querySelectorAll('.toggle-favorite').forEach(button => {
                 button.addEventListener('click', function () {
                     const adId = this.getAttribute('data-ad-id');
-                    fetch(`/favorites/${adId}`, {
+                    fetch('{{ route('favorites.toggle', 0) }}'.replace('0', adId), {
                         method: 'POST',
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ _method: 'POST' })
+                        body: JSON.stringify({})
                     })
                     .then(response => response.json())
                     .then(data => {
-                        if (data.success) {
-                            if (!data.is_favorited) {
-                                const card = document.querySelector(`.ad-card[data-ad-id="${adId}"]`);
-                                card.remove();
-                                if (!document.querySelector('.ad-card')) {
-                                    document.querySelector('.ads-grid').outerHTML = `
-                                        <div class="no-results">
-                                            <i class="fas fa-heart-crack"></i>
-                                            <p>У вас нет избранных объявлений</p>
-                                        </div>`;
-                                }
-                                alert(data.message);
-                            } else {
-                                alert('Ошибка: объявление не удалено из избранного');
+                        if (data.success && !data.is_favorited) {
+                            const card = document.querySelector(`.ad-card[data-ad-id="${adId}"]`);
+                            card.remove();
+                            if (!document.querySelector('.ad-card')) {
+                                document.querySelector('.ads-grid').outerHTML = `
+                                    <div class="no-results">
+                                        <i class="fas fa-heart-crack"></i>
+                                        <p>У вас нет избранных объявлений</p>
+                                    </div>`;
                             }
+                            alert(data.message || 'Объявление удалено из избранного');
                         } else {
-                            alert('Ошибка при изменении избранного');
+                            alert(data.message || 'Ошибка при удалении из избранного');
                         }
                     })
                     .catch(error => {

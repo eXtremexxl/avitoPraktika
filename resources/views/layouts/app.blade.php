@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="{{ route('home') }}" class="logo">Avito(moe)</a>
+            <a href="{{ route('home') }}" class="logo">GoSell</a>
             <nav class="nav">
                 @auth
                     <a href="{{ route('ad.create') }}">Добавить объявление</a>
@@ -50,5 +50,6 @@
             document.querySelector('.nav').classList.toggle('active');
         });
     </script>
+    
 </body>
 </html>

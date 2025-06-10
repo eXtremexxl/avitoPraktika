@@ -54,9 +54,11 @@ Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile
 // Чаты
 Route::middleware('auth')->group(function () {
     Route::get('/chats', [ChatController::class, 'index'])->name('chats.index');
-    Route::get('/chat/{id}', [ChatController::class, 'show'])->name('chat.show');
-    Route::post('/chat/{adId}/start', [ChatController::class, 'start'])->name('chat.start');
-    Route::post('/chat/{chatId}/send', [ChatController::class, 'sendMessage'])->name('chat.send');
+    Route::get('/chats/{adId}/start', [ChatController::class, 'start'])->name('chat.start');
+    Route::get('/chats/{id}', [ChatController::class, 'show'])->name('chat.show');
+    Route::post('/chats/{chatId}/send', [ChatController::class, 'sendMessage'])->name('chat.send');
+    Route::post('/chats/{chatId}/delete', [ChatController::class, 'delete'])->name('chat.delete');
+    
 });
 
 // Отзывы

@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
-    protected $fillable = ['ad_id', 'seller_id', 'buyer_id'];
+    protected $fillable = ['ad_id', 'seller_id', 'buyer_id', 'deleted_by_user'];
+
+    protected $casts = [
+        'deleted_by_user' => 'array',
+    ];
 
     public function ad()
     {
@@ -34,5 +38,13 @@ class Chat extends Model
             ->where('sender_id', '!=', auth()->id())
             ->where('is_read', false)
             ->count();
+    }
+
+    /**
+     * Проверяет, удалён ли чат для текущего пользователя.
+     */
+    public function isDeletedForCurrentUser()
+    {
+        return !empty($this->deleted_by_user) && in_array((string) auth()->id(), array_map('strval', $this->deleted_by_user));
     }
 }

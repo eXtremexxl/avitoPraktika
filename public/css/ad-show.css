@@ -1,3 +1,4 @@
+
 /* Контейнер */
 .container {
     max-width: 1200px;
@@ -16,7 +17,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    position: relative; /* Убрать из центра */
+    position: relative;
     width: 100%;
     max-width: 1200px;
     margin-left: auto;
@@ -381,11 +382,11 @@
 .lightbox {
     background: rgba(0, 0, 0, 0.9);
     border: none;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 95vw;
+    max-height: 95vh;
     padding: 0;
     border-radius: 8px;
-    display: none; /* Скрыт по умолчанию */
+    display: none;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -397,7 +398,7 @@
 }
 
 .lightbox[open] {
-    display: flex; /* Показ при открытии */
+    display: flex;
     opacity: 1;
 }
 
@@ -415,10 +416,43 @@
 }
 
 .lightbox-content img {
-    max-width: 90vw;
+    max-width: 80vw;
     max-height: 80vh;
     object-fit: contain;
     border-radius: 8px;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.lightbox-nav:hover {
+    background: #ffffff;
+}
+
+.lightbox-nav.prev {
+    left: 16px;
+}
+
+.lightbox-nav.next {
+    right: 16px;
+}
+
+.lightbox-nav i {
+    font-size: 20px;
+    color: #2d3748;
 }
 
 .close-lightbox {
@@ -467,6 +501,7 @@
     overflow: hidden;
     gap: 8px;
 }
+
 /* Отменяем изменение размера на адаптиве */
 @media (max-width: 1200px),
        (max-width: 900px),
@@ -479,10 +514,10 @@
         padding: 10px 20px !important;
         font-size: 15px !important;
     }
-    .btn-primary{
+    .btn-primary {
         width: 100% !important;
     }
-    .btn-primary1{
+    .btn-primary1 {
         margin-left: 10px !important;
     }
 }
@@ -491,6 +526,7 @@
     background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
     color: #ffffff;
 }
+
 .btn-primary1 {
     margin-top: 10px !important;
     background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
@@ -584,6 +620,11 @@
         width: 44px;
         height: 44px;
     }
+
+    .lightbox-nav {
+        width: 44px;
+        height: 44px;
+    }
 }
 
 @media (max-width: 900px) {
@@ -614,12 +655,12 @@
         font-size: 14px;
     }
 
-    .close-lightbox {
+    .close-lightbox, .lightbox-nav {
         width: 40px;
         height: 40px;
     }
 
-    .close-lightbox i {
+    .close-lightbox i, .lightbox-nav i {
         font-size: 18px;
     }
 }
@@ -653,12 +694,12 @@
         font-size: 13px;
     }
 
-    .close-lightbox {
+    .close-lightbox, .lightbox-nav {
         width: 36px;
         height: 36px;
     }
 
-    .close-lightbox i {
+    .close-lightbox i, .lightbox-nav i {
         font-size: 16px;
     }
 
@@ -719,12 +760,12 @@
         font-size: 12px;
     }
 
-    .close-lightbox {
+    .close-lightbox, .lightbox-nav {
         width: 32px;
         height: 32px;
     }
 
-    .close-lightbox i {
+    .close-lightbox i, .lightbox-nav i {
         font-size: 14px;
     }
 
@@ -774,12 +815,12 @@
         font-size: 11px;
     }
 
-    .close-lightbox {
+    .close-lightbox, .lightbox-nav {
         width: 28px;
         height: 28px;
     }
 
-    .close-lightbox i {
+    .close-lightbox i, .lightbox-nav i {
         font-size: 12px;
     }
 

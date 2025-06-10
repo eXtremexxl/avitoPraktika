@@ -40,7 +40,7 @@
                                 id="main-image"
                                 loading="lazy"
                                 aria-label="Основное фото объявления"
-                                onclick="openLightbox('{{ asset('storage/' . ($ad->photos->where('is_main', true)->first() ?? $ad->photos->first())->path) }}')"
+                                onclick="openLightbox(0)"
                             >
                             <div class="photo-loading"></div>
                         </div>
@@ -51,7 +51,7 @@
                                         src="{{ asset('storage/' . $photo->path) }}" 
                                         alt="Миниатюра {{ $ad->title }} #{{ $index + 1 }}" 
                                         class="{{ $photo->is_main ? 'active' : '' }}" 
-                                        onclick="changeMainImage('{{ asset('storage/' . $photo->path) }}', this); openLightbox('{{ asset('storage/' . $photo->path) }}')"
+                                        onclick="changeMainImage('{{ asset('storage/' . $photo->path) }}', this); openLightbox({{ $index }})"
                                         loading="lazy"
                                         aria-label="Миниатюра фото {{ $index + 1 }}"
                                     >
@@ -119,13 +119,11 @@
                                     </button>
                                 </form>
                             @else
-                                <form action="{{ route('chat.start', $ad->id) }}" method="POST" style="display: inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary" aria-label="Написать продавцу">
-                                        <i class="fas fa-envelope"></i> 
-                                        {{ auth()->user()->chats()->where('ad_id', $ad->id)->exists() ? 'Написать продавцу' : 'Написать продавцу' }}
-                                    </button>
-                                </form>
+                                @if (auth()->check() && auth()->id() !== $ad->user_id)
+                                    <a href="{{ route('chat.start', $ad->id) }}" class="btn btn-primary" aria-label="Написать продавцу">
+                                        <i class="fas fa-envelope"></i> Написать продавцу
+                                    </a>
+                                @endif
                                 <button 
                                     id="favorite-btn" 
                                     class="btn btn-outline-secondary {{ auth()->user()->favorites()->where('ad_id', $ad->id)->exists() ? 'favorited' : '' }}" 
@@ -199,6 +197,14 @@
     <dialog id="lightbox" class="lightbox">
         <div class="lightbox-content">
             <img id="lightbox-image" src="" alt="Полноэкранное фото">
+            @if ($ad->photos->count() > 1)
+                <button class="lightbox-nav prev" aria-label="Предыдущее фото" onclick="navigateLightbox(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="lightbox-nav next" aria-label="Следующее фото" onclick="navigateLightbox(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            @endif
             <button class="close-lightbox" aria-label="Закрыть лайтбокс">
                 <i class="fas fa-times"></i>
             </button>
@@ -206,7 +212,15 @@
     </dialog>
 
 <script>
-    // Обработчик для избранного (без изменений)
+    // Массив фотографий для навигации
+    const photos = [
+        @foreach ($ad->photos as $photo)
+            '{{ asset('storage/' . $photo->path) }}',
+        @endforeach
+    ];
+    let currentPhotoIndex = 0;
+
+    // Обработчик для избранного
     document.getElementById('favorite-btn')?.addEventListener('click', function() {
         const adId = this.dataset.adId;
         const button = this;
@@ -244,11 +258,19 @@
     }
 
     // Открытие лайтбокса
-    function openLightbox(src) {
+    function openLightbox(index) {
+        currentPhotoIndex = index;
         const lightbox = document.getElementById('lightbox');
         const lightboxImage = document.getElementById('lightbox-image');
-        lightboxImage.src = src;
+        lightboxImage.src = photos[currentPhotoIndex];
         lightbox.showModal();
+    }
+
+    // Навигация по фотографиям
+    function navigateLightbox(direction) {
+        currentPhotoIndex = (currentPhotoIndex + direction + photos.length) % photos.length;
+        const lightboxImage = document.getElementById('lightbox-image');
+        lightboxImage.src = photos[currentPhotoIndex];
     }
 
     // Закрытие лайтбокса
@@ -270,6 +292,17 @@
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && lightbox.open) {
             lightbox.close();
+        }
+    });
+
+    // Навигация по стрелкам клавиатуры
+    document.addEventListener('keydown', (event) => {
+        if (lightbox.open) {
+            if (event.key === 'ArrowLeft') {
+                navigateLightbox(-1);
+            } else if (event.key === 'ArrowRight') {
+                navigateLightbox(1);
+            }
         }
     });
 

@@ -8,12 +8,12 @@
     <div class="container">
         @if (session('success'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                <i class="fas fa-check-circle"></i> {{ session('success') }}
             </div>
         @endif
         @if (session('error'))
             <div class="alert alert-error">
-                {{ session('error') }}
+                <i class="fas fa-exclamation-circle"></i> {{ session('error') }}
             </div>
         @endif
 
@@ -22,7 +22,18 @@
             <div class="chat-messages" id="chat-messages">
                 @foreach ($chat->messages as $message)
                     <div class="message {{ $message->sender_id === auth()->id() ? 'message-sent' : 'message-received' }}">
+                        <div class="message-avatar">
+                            @if ($message->sender->avatar)
+                                <img src="{{ asset('storage/' . $message->sender->avatar) }}" alt="{{ $message->sender->name }}" loading="lazy">
+                            @else
+                                <div class="no-avatar"><i class="fas fa-user"></i></div>
+                            @endif
+                        </div>
                         <div class="message-content">
+                            <div class="message-header">
+                                <span class="sender-name">{{ $message->sender->name }}</span>
+                                <span class="message-time">{{ $message->created_at->format('d.m.Y H:i') }}</span>
+                            </div>
                             @if ($message->content)
                                 <p>{{ $message->content }}</p>
                             @endif
@@ -41,7 +52,6 @@
                                     @endforeach
                                 </div>
                             @endif
-                            <span class="message-time">{{ $message->created_at->format('d.m.Y H:i') }}</span>
                             @if ($message->sender_id === auth()->id())
                                 <span class="message-status">
                                     <i class="fas {{ $message->is_read ? 'fa-check-double' : 'fa-check' }}"></i>
@@ -71,7 +81,6 @@
     </div>
 
     <script>
-        // Функция для прокрутки к последнему сообщению
         function scrollToBottom() {
             const chatMessages = document.getElementById('chat-messages');
             if (chatMessages) {
@@ -79,12 +88,8 @@
             }
         }
 
-        // Прокрутка при загрузке страницы
-        window.addEventListener('load', function() {
-            scrollToBottom();
-        });
+        window.addEventListener('load', scrollToBottom);
 
-        // Обработка отправки формы
         document.getElementById('message-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const form = this;
@@ -105,24 +110,21 @@
                     form.querySelector('input[type="file"]').value = '';
                     errorDiv.style.display = 'none';
                     errorDiv.innerHTML = '';
-                    location.reload(); // Перезагрузка страницы
+                    location.reload();
                 } else {
                     errorDiv.style.display = 'block';
                     errorDiv.innerHTML = data.error ? Object.values(data.error).flat().join('<br>') : 'Произошла ошибка';
-                    scrollToBottom(); // Прокрутка при ошибке
+                    scrollToBottom();
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
                 errorDiv.style.display = 'block';
                 errorDiv.innerHTML = 'Не удалось отправить сообщение';
-                scrollToBottom(); // Прокрутка при ошибке
+                scrollToBottom();
             });
         });
 
-        // Прокрутка после перезагрузки страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            scrollToBottom();
-        });
+        document.addEventListener('DOMContentLoaded', scrollToBottom);
     </script>
 @endsection
