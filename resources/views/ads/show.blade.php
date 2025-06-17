@@ -193,7 +193,7 @@
         @endif
     </div>
 
-    <!-- Лайтбокс -->
+
     <dialog id="lightbox" class="lightbox">
         <div class="lightbox-content">
             <img id="lightbox-image" src="" alt="Полноэкранное фото">
@@ -212,7 +212,7 @@
     </dialog>
 
 <script>
-    // Массив фотографий для навигации
+
     const photos = [
         @foreach ($ad->photos as $photo)
             '{{ asset('storage/' . $photo->path) }}',
@@ -220,7 +220,7 @@
     ];
     let currentPhotoIndex = 0;
 
-    // Обработчик для избранного
+
     document.getElementById('favorite-btn')?.addEventListener('click', function() {
         const adId = this.dataset.adId;
         const button = this;
@@ -247,7 +247,7 @@
         });
     });
 
-    // Смена главного изображения
+
     function changeMainImage(src, thumbnail) {
         const mainImage = document.getElementById('main-image');
         mainImage.src = src;
@@ -257,7 +257,6 @@
         thumbnail.classList.add('active');
     }
 
-    // Открытие лайтбокса
     function openLightbox(index) {
         currentPhotoIndex = index;
         const lightbox = document.getElementById('lightbox');
@@ -266,14 +265,14 @@
         lightbox.showModal();
     }
 
-    // Навигация по фотографиям
+
     function navigateLightbox(direction) {
         currentPhotoIndex = (currentPhotoIndex + direction + photos.length) % photos.length;
         const lightboxImage = document.getElementById('lightbox-image');
         lightboxImage.src = photos[currentPhotoIndex];
     }
 
-    // Закрытие лайтбокса
+
     const lightbox = document.getElementById('lightbox');
     const closeButton = document.querySelector('.close-lightbox');
     
@@ -281,21 +280,20 @@
         lightbox.close();
     });
 
-    // Закрытие по клику на фон
     lightbox?.addEventListener('click', (event) => {
         if (event.target === lightbox) {
             lightbox.close();
         }
     });
 
-    // Закрытие по клавише Esc
+
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && lightbox.open) {
             lightbox.close();
         }
     });
 
-    // Навигация по стрелкам клавиатуры
+
     document.addEventListener('keydown', (event) => {
         if (lightbox.open) {
             if (event.key === 'ArrowLeft') {
@@ -306,7 +304,7 @@
         }
     });
 
-    // Поделиться
+
     function shareAd() {
         const url = window.location.href;
         const title = '{{ $ad->title }}';

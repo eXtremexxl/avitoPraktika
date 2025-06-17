@@ -1,11 +1,11 @@
-/* Контейнер */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 24px;
 }
 
-/* Сообщения */
+
 .alert-success {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
     color: #155724;
@@ -34,7 +34,7 @@
     transition: transform 0.3s ease;
 }
 
-/* Заголовок */
+
 h1 {
     font-size: 32px;
     font-weight: 700;
@@ -43,7 +43,6 @@ h1 {
     letter-spacing: -0.02em;
 }
 
-/* Фильтры */
 .chat-filters {
     margin-bottom: 24px;
 }
@@ -86,7 +85,6 @@ h1 {
     background: #ffffff;
 }
 
-/* Список чатов */
 .chats-list {
     display: flex;
     flex-direction: column;
@@ -277,7 +275,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(229,62,62,0.3);
 }
 
-/* Кнопки */
+
 .btn {
     padding: 12px 24px;
     min-width: 120px;
@@ -324,7 +322,7 @@ h1 {
     opacity: 0;
 }
 
-/* Адаптивность */
+
 @media (max-width: 900px) {
     .chat-image {
         width: 50px;

@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
         $chats = $user->chats()->with(['ad', 'seller', 'buyer', 'messages'])->get();
 
-        // Статистика
+
         $viewsData = DB::table('views')
             ->whereIn('ad_id', $user->ads()->pluck('id'))
             ->where('viewed_at', '>=', now()->subDays(7))

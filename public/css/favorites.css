@@ -1,4 +1,4 @@
-/* Базовые стили */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -27,7 +27,7 @@
     color: #721c24;
 }
 
-/* Навигация */
+
 .nav-favorites {
     display: flex;
     align-items: center;
@@ -55,7 +55,7 @@
     color: #2563eb;
 }
 
-/* Заголовок */
+
 .favorites-header {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
     padding: 30px;
@@ -87,7 +87,7 @@
     color: #3b82f6;
 }
 
-/* Вкладка в профиле */
+
 .tab-favorites {
     padding: 12px 24px;
     background: none;
@@ -118,7 +118,7 @@
     color: #2563eb;
 }
 
-/* Сетка объявлений */
+
 .ads-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -209,7 +209,7 @@
     flex-wrap: wrap;
 }
 
-/* Пустое состояние */
+
 .no-results {
     font-size: 16px;
     color: #718096;
@@ -232,7 +232,7 @@
     margin: 0;
 }
 
-/* Кнопки */
+
 .btn {
     padding: 12px 24px;
     min-width: 140px;
@@ -294,7 +294,7 @@
     opacity: 0;
 }
 
-/* Адаптивность */
+
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;

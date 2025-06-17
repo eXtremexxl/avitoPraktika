@@ -88,7 +88,7 @@
             toggleBtn.addEventListener('click', function () {
                 sidebar.classList.toggle('active');
                 this.classList.toggle('active');
-                document.body.classList.toggle('menu-open'); // <-- ВАЖНО
+                document.body.classList.toggle('menu-open'); 
             });
         }
     });

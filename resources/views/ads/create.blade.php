@@ -125,13 +125,11 @@
                 preview.appendChild(container);
             });
 
-            // Обновляем input.files
             const dataTransfer = new DataTransfer();
             selectedFiles.forEach(file => dataTransfer.items.add(file));
             photosInput.files = dataTransfer.files;
         }
 
-        // Инициализация при ошибке валидации
         document.addEventListener('DOMContentLoaded', () => {
             updateMainPhotoOptions(selectedFiles);
         });

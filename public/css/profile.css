@@ -1,4 +1,4 @@
-/* Контейнер */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -9,7 +9,7 @@
     margin-right: 8px;
 }
 
-/* Сообщения */
+
 .alert-success {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
     color: #155724;
@@ -36,7 +36,7 @@
     gap: 8px;
 }
 
-/* Заголовок */
+
 h1 {
     font-size: 32px;
     font-weight: 700;
@@ -45,7 +45,6 @@ h1 {
     letter-spacing: -0.02em;
 }
 
-/* Информация о профиле */
 .profile-info {
     background: #ffffff;
     padding: 24px;
@@ -72,7 +71,7 @@ h1 {
     color: #2d3748;
 }
 
-/* Вкладки */
+
 .tabs {
     display: flex;
     gap: 12px;
@@ -144,7 +143,7 @@ h1 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Сетка объявлений и чатов */
+
 .ads-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -251,7 +250,7 @@ h1 {
     border-radius: 8px;
 }
 
-/* Действия карточки */
+
 .ad-actions {
     display: flex;
     gap: 12px;
@@ -259,7 +258,7 @@ h1 {
     flex-wrap: wrap;
 }
 
-/* Форма профиля */
+
 .profile-form {
     max-width: 700px;
     margin: 0 auto;
@@ -319,11 +318,11 @@ h1 {
     margin-top: 24px;
 }
 
-/* Кнопки */
+
 .btn {
     padding: 12px 24px;
-    min-width: 140px;       /* одинаковая минимальная ширина */
-    height: 48px;           /* одинаковая высота */
+    min-width: 140px;       
+    height: 48px;           
     border: none;
     border-radius: 6px;
     font-size: 16px;
@@ -339,7 +338,7 @@ h1 {
     white-space: nowrap;
 }
 
-/* Синяя кнопка */
+
 .btn-primary {
     background: linear-gradient(135deg, #007bff 0%, #00aaff 100%);
     color: #ffffff;
@@ -351,7 +350,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(0,123,255,0.3);
 }
 
-/* Серая кнопка */
+
 .btn-secondary {
     background: linear-gradient(135deg, #718096 0%, #a0aec0 100%);
     color: #ffffff;
@@ -363,7 +362,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(113,128,150,0.3);
 }
 
-/* Красная кнопка */
+
 .btn-danger {
     background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
     color: #ffffff;
@@ -375,7 +374,7 @@ h1 {
     box-shadow: 0 4px 10px rgba(229,62,62,0.3);
 }
 
-/* Всплеск */
+
 .btn::after {
     content: '';
     position: absolute;
@@ -396,7 +395,7 @@ h1 {
 }
 
 
-/* Адаптивность */
+
 @media (max-width: 900px) {
     .ads-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -494,7 +493,7 @@ h1 {
     color: #721c24;
 }
 
-/* Аватарка */
+
 .profile-avatar {
     width: 120px;
     height: 120px;
@@ -519,7 +518,7 @@ h1 {
     color: #e53e3e;
 }
 
-/* Заголовок профиля */
+
 .profile-header {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
     padding: 30px;
@@ -570,7 +569,7 @@ h1 {
     color: #666;
 }
 
-/* Вкладки */
+
 .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -582,7 +581,6 @@ h1 {
 
 
 
-/* Карточки */
 .ads-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -644,7 +642,7 @@ h1 {
     margin-top: 10px;
 }
 
-/* Отзывы */
+
 .reviews-list {
     display: grid;
     gap: 20px;
@@ -701,7 +699,7 @@ h1 {
     text-align: center;
 }
 
-/* Форма редактирования профиля */
+
 .profile-form {
     max-width: 600px;
     margin: 0 auto;
@@ -776,7 +774,7 @@ h1 {
     color: #e53e3e;
 }
 
-/* Адаптивность */
+
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;
@@ -884,11 +882,11 @@ h1 {
         padding: 10px 16px;
         font-size: 14px;
         justify-content: center;
-        border-radius: 6px; /* Скругление для мобильных */
+        border-radius: 6px; 
     }
 
     .tab-button:hover {
-        transform: none; /* Отключаем hover-эффекты */
+        transform: none; 
     }
 
     .ads-grid {
@@ -898,7 +896,7 @@ h1 {
 
     .ad-card, .chat-card {
         margin: 0 auto;
-        max-width: 400px; /* Ограничиваем ширину для центрирования */
+        max-width: 400px; 
     }
 
     .ad-image img, .chat-image img,
@@ -968,7 +966,7 @@ h1 {
     }
 
     .btn-primary, .btn-danger {
-        height: 44px; /* Touch-friendly */
+        height: 44px; 
     }
 }
 
@@ -1353,7 +1351,7 @@ h1 {
     }
 }
 
-/* Базовая сетка статистики */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1362,7 +1360,7 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Карточка статистики */
+
 .stats-card {
     background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
     border: 1px solid #edf2f7;
@@ -1377,7 +1375,7 @@ h1 {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* Заголовок */
+
 .stats-card h3 {
     font-size: 20px;
     font-weight: 600;
@@ -1385,13 +1383,13 @@ h1 {
     margin-bottom: 16px;
 }
 
-/* Канвас (для графиков) */
+
 .stats-card canvas {
     max-width: 100%;
     height: auto;
 }
 
-/* Список внутри карточки */
+
 .stats-card ul {
     list-style: none;
     padding: 0;
@@ -1408,7 +1406,7 @@ h1 {
     color: #3b82f6;
 }
 
-/* Адаптивные настройки */
+
 @media (max-width: 992px) {
     .stats-grid {
         gap: 20px;

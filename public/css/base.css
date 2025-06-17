@@ -32,7 +32,7 @@ a {
     color: inherit;
 }
 
-/* Шапка */
+
 .header {
     background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%);
     box-shadow: var(--shadow-sm);
@@ -52,7 +52,6 @@ a {
     justify-content: space-between;
 }
 
-/* Логотип */
 .logo {
     font-size: 26px;
     font-weight: 700;
@@ -65,7 +64,7 @@ a {
 }
 
 
-/* Навигация */
+
 .nav {
     display: flex;
     gap: 24px;
@@ -117,7 +116,7 @@ a {
     left: 25%;
 }
 
-/* Бургер-меню */
+
 .menu-toggle {
     display: none;
     background: none;
@@ -169,7 +168,7 @@ a {
     top: 0;
 }
 
-/* Адаптивность */
+
 @media (max-width: 1200px) {
     .header-container {
         max-width: 960px;

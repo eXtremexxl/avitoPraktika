@@ -36,14 +36,12 @@ class ChatController extends Controller
             });
 
 
-        // Фильтр по названию объявления
         if ($request->has('ad_title') && $request->input('ad_title')) {
             $query->whereHas('ad', function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->input('ad_title') . '%');
             });
         }
 
-        // Фильтр по имени собеседника
         if ($request->has('partner_name') && $request->input('partner_name')) {
             $query->whereHas('seller', function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->input('partner_name') . '%');
@@ -54,7 +52,7 @@ class ChatController extends Controller
 
         $chats = $query->get();
 
-        // Сортировка по дате последнего сообщения
+
         $sortDirection = $request->input('sort', 'desc');
         $chats = $sortDirection === 'asc'
             ? $chats->sortBy(function ($chat) {
@@ -179,20 +177,19 @@ class ChatController extends Controller
                 return response()->json(['error' => 'У вас нет доступа к этому чату'], 403);
             }
 
-            // Инициализируем массив deleted_by_user
+
             $deletedByUser = is_array($chat->deleted_by_user) ? $chat->deleted_by_user : [];
 
-            // Добавляем текущего пользователя в массив, если его там нет
             if (!in_array((string) Auth::id(), array_map('strval', $deletedByUser))) {
                 $deletedByUser[] = (string) Auth::id();
                 $chat->deleted_by_user = $deletedByUser;
                 $chat->save();
             }
 
-            // Проверяем, удалили ли чат оба участника
+
             if (in_array((string) $chat->seller_id, array_map('strval', $deletedByUser)) &&
                 in_array((string) $chat->buyer_id, array_map('strval', $deletedByUser))) {
-                // Удаляем файлы из хранилища
+
                 foreach ($chat->messages as $message) {
                     foreach ($message->files as $file) {
                         Storage::disk('public')->delete($file->path);
@@ -200,10 +197,9 @@ class ChatController extends Controller
                     }
                 }
 
-                // Удаляем сообщения
+
                 $chat->messages()->delete();
 
-                // Удаляем сам чат
                 $chat->delete();
 
                 return response()->json(['success' => true, 'message' => 'Чат полностью удалён']);

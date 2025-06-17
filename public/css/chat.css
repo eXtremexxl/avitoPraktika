@@ -1,11 +1,11 @@
-/* Контейнер */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 24px;
 }
 
-/* Сообщения */
+
 .alert-success {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
     color: #155724;
@@ -34,7 +34,7 @@
     transition: transform 0.3s ease;
 }
 
-/* Заголовок */
+
 h1 {
     font-size: 32px;
     font-weight: 700;
@@ -54,7 +54,7 @@ h1 a:hover {
     text-decoration: underline;
 }
 
-/* Чат */
+
 .chat-container {
     background: #ffffff;
     border-radius: 10px;
@@ -261,7 +261,7 @@ h1 a:hover {
     display: none;
 }
 
-/* Кнопки */
+
 .btn {
     padding: 12px 24px;
     min-width: 120px;
@@ -308,7 +308,7 @@ h1 a:hover {
     opacity: 0;
 }
 
-/* Адаптивность */
+
 @media (max-width: 900px) {
     .chat-messages {
         max-height: 400px;

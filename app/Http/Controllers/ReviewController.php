@@ -27,7 +27,6 @@ class ReviewController extends Controller
             return redirect()->back()->with('error', 'Нельзя оставить отзыв себе');
         }
 
-        // Проверяем, оставил ли пользователь уже отзыв
         $existingReview = Review::where('reviewer_id', Auth::id())
             ->where('reviewed_id', $reviewed->id)
             ->exists();

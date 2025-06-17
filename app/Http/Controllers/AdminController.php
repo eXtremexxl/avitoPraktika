@@ -12,21 +12,43 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $userCount = User::count();
+        $adCount = Ad::count();
+        $categoryCount = Category::count();
+        return view('admin.dashboard', compact('userCount', 'adCount', 'categoryCount'));
     }
 
-    public function users()
+    public function users(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+        }
+
+        $users = $query->paginate(10)->appends(['search' => $search]);
         return view('admin.users', compact('users'));
+    }
+
+    public function editUser($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin.users_edit', compact('user'));
     }
 
     public function updateUser(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'required|string|max:20',
+            'role' => 'required|in:user,admin',
+        ]);
 
-        // ✅ Редиректим обратно к списку пользователей
+        $user = User::findOrFail($id);
+        $user->update($validated);
+
         return redirect()->route('admin.users')->with('success', 'Пользователь обновлён');
     }
 
@@ -34,7 +56,6 @@ class AdminController extends Controller
     {
         User::findOrFail($id)->delete();
 
-        // ✅ Редиректим обратно к списку пользователей
         return redirect()->route('admin.users')->with('success', 'Пользователь удалён');
     }
 
@@ -48,7 +69,6 @@ class AdminController extends Controller
     {
         Category::create($request->all());
 
-        // ✅ Редиректим обратно к списку категорий
         return redirect()->route('admin.categories')->with('success', 'Категория создана');
     }
 
@@ -56,13 +76,22 @@ class AdminController extends Controller
     {
         Category::findOrFail($id)->delete();
 
-        // ✅ Редиректим обратно к списку категорий
         return redirect()->route('admin.categories')->with('success', 'Категория удалена');
     }
 
-    public function ads()
+    public function ads(Request $request)
     {
-        $ads = Ad::with('photos')->get();
+        $query = Ad::with('photos');
+
+        if ($search = $request->input('search')) {
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        if ($status = $request->input('status')) {
+            $query->where('is_active', $status == 'active' ? 1 : 0);
+        }
+
+        $ads = $query->paginate(10)->appends(['search' => $search, 'status' => $status]);
         return view('admin.ads', compact('ads'));
     }
 
@@ -71,7 +100,6 @@ class AdminController extends Controller
         $ad = Ad::findOrFail($id);
         $ad->update(['approved' => true]);
 
-        // ✅ Редиректим обратно к списку объявлений
         return redirect()->route('admin.ads')->with('success', 'Объявление подтверждено');
     }
 
@@ -83,7 +111,6 @@ class AdminController extends Controller
         }
         $ad->delete();
 
-        // ✅ Редиректим обратно к списку объявлений
         return redirect()->route('admin.ads')->with('success', 'Объявление удалено');
     }
 }

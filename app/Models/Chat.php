@@ -40,9 +40,6 @@ class Chat extends Model
             ->count();
     }
 
-    /**
-     * Проверяет, удалён ли чат для текущего пользователя.
-     */
     public function isDeletedForCurrentUser()
     {
         return !empty($this->deleted_by_user) && in_array((string) auth()->id(), array_map('strval', $this->deleted_by_user));

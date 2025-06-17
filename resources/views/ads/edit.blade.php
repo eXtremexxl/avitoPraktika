@@ -125,7 +125,6 @@
                 option.text = `Новое фото ${i + 1}`;
                 mainPhotoSelect.appendChild(option);
             });
-            // Устанавливаем значение по умолчанию
             const mainPhotoIndex = @json($ad->photos->where('is_main', true)->first()->id ?? null);
             const oldValue = "{{ old('main_photo') }}";
             if (oldValue !== '' && parseInt(oldValue) < (existingPhotos.length + newFiles.length)) {
@@ -216,7 +215,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            deletePhotosInput.value = ''; // Гарантируем, что поле пустое при загрузке
+            deletePhotosInput.value = ''; 
             renderExistingPhotos();
             updateMainPhotoOptions();
         });

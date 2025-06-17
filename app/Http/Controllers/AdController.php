@@ -33,7 +33,6 @@ class AdController extends Controller
             abort(404);
         }
 
-        // Логируем просмотр только если пользователь не просматривал это объявление
         if (Auth::check() && !$ad->views()->where('user_id', Auth::id())->exists()) {
             View::create([
                 'ad_id' => $ad->id,
@@ -42,7 +41,6 @@ class AdController extends Controller
             ]);
         }
 
-        // Связанные объявления
         $relatedAds = Ad::with(['photos', 'category'])
             ->where('category_id', $ad->category_id)
             ->where('id', '!=', $ad->id)

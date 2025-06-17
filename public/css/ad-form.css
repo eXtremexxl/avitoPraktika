@@ -1,4 +1,3 @@
-/* Переменные для консистентности */
 :root {
     --primary-color: #007bff;
     --primary-hover: #0056b3;
@@ -16,7 +15,6 @@
     --transition: all 0.3s ease;
 }
 
-/* Контейнер */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -24,7 +22,6 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* Сообщения */
 .alert-success {
     background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
     color: #155724;
@@ -40,7 +37,6 @@
     animation: slideIn 0.5s ease-out;
 }
 
-/* Анимация появления сообщения */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -52,7 +48,7 @@
     }
 }
 
-/* Форма */
+
 .ad-form {
     max-width: 700px;
     margin: 32px auto;
@@ -69,7 +65,7 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Анимация появления формы */
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -81,7 +77,6 @@
     }
 }
 
-/* Заголовок */
 h1 {
     font-size: 32px;
     font-weight: 700;
@@ -102,7 +97,6 @@ h1::after {
     border-radius: 2px;
 }
 
-/* Группа полей */
 .form-group {
     margin-bottom: 24px;
     animation: slideIn 0.5s ease-out;
@@ -151,7 +145,7 @@ h1::after {
     outline: none;
 }
 
-/* Пульсация при фокусе */
+
 .form-group input:focus::after,
 .form-group select:focus::after,
 .form-group textarea:focus::after {
@@ -172,7 +166,7 @@ h1::after {
     100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
-/* Чекбокс */
+
 .form-group input[type="checkbox"] {
     width: auto;
     margin-right: 8px;
@@ -181,7 +175,7 @@ h1::after {
     cursor: pointer;
 }
 
-/* Ошибки */
+
 .error {
     color: var(--error-color);
     font-size: 13px;
@@ -197,7 +191,7 @@ h1::after {
     75% { transform: translateX(4px); }
 }
 
-/* Загрузка фото */
+
 .photo-upload .photo-preview {
     display: flex;
     gap: 12px;
@@ -228,8 +222,8 @@ h1::after {
 
 .photo-upload .remove-photo {
     position: absolute;
-    top: 4px;       /* Было -8px — теперь ниже */
-    right: 4px;     /* Было -8px — теперь левее */
+    top: 4px;       
+    right: 4px;   
     width: 24px;
     height: 24px;
     background: var(--error-color);
@@ -248,7 +242,7 @@ h1::after {
     transform: rotate(90deg);
 }
 
-/* Индикатор загрузки фото */
+
 .photo-upload .photo-item.uploading::after {
     content: '';
     position: absolute;
@@ -267,7 +261,7 @@ h1::after {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Действия формы */
+
 .form-actions {
     display: flex;
     gap: 12px;
@@ -275,10 +269,10 @@ h1::after {
     margin-top: 24px;
 }
 
-/* Кнопки */
+
 .btn {
     padding: 12px 24px;
-    min-width: 160px; /* Синхронизация с ad-show.css */
+    min-width: 160px; 
     height: 48px;
     border: none;
     border-radius: var(--border-radius);
@@ -336,7 +330,7 @@ h1::after {
     opacity: 0;
 }
 
-/* Адаптивность */
+
 @media (max-width: 1200px) {
     .container {
         max-width: 960px;
